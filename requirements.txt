@@ -39,3 +39,4 @@ urllib3==1.25.9
 wcwidth==0.1.9
 Werkzeug==1.0.1
 xlrd==1.2.0
+MutPy==0.6.1

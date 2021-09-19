@@ -13,5 +13,3 @@ def print_workout_days(workout: str, my_workouts: dict = WORKOUTS) -> None:
     days = [day.title() for day, wo in my_workouts.items()
             if workout.lower() in wo.lower()]
     print(', '.join(days) if days else 'No matching workout')
-
-print_workout_days('upper body #1')
