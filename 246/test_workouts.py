@@ -23,7 +23,7 @@ def test_print_workout_days(capsys, workout, day):
 @pytest.mark.parametrize(
     "workout, output",
     [
-        ("bla", "No matching workout\n"),
+        ("bla", "No matching workout\n"),   
     ],
 )
 def test_print_no_workout_days(capsys, workout, output):
