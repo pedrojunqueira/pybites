@@ -28,9 +28,51 @@ TABLE = 'movies'
 
 @pytest.fixture
 def db():
-    # instantiate MovieDb class using above constants
-    # do proper setup / teardown using MovieDb methods
-    # https://docs.pytest.org/en/latest/fixture.html (hint: yield)
+    Mdb = MovieDb(db=DB, data=DATA, table=TABLE)
+    Mdb.init()
+    yield Mdb
+    Mdb.drop_table()
 
+def test_contructor(db):
+    assert db.table == 'movies'
 
-# write tests for all MovieDb's query / add / delete
+def test_query_all(db):
+    q = db.query()
+    assert len(q) == 10
+
+def test_query_by_title_exact(db):
+    q = db.query(title="The Godfather")
+    assert len(q) == 1
+    assert q[0][1] == "The Godfather"
+
+def test_query_by_title_anywhere(db):
+    q = db.query(title="The")
+    assert len(q) == 5
+
+def test_query_by_year(db):
+    q = db.query(year=1975)
+    assert len(q) == 1
+    assert q[0][1] == "One Flew Over the Cuckoo's Nest"
+
+def test_query_score_gt(db):
+    q = db.query(score_gt=1)
+    assert len(q) == 10
+    q = db.query(score_gt=9)
+    assert len(q) == 2
+    assert " ".join([i[1] for i in q]) == "The Godfather The Shawshank Redemption"
+
+def test_add(db):
+    q = db.query()
+    assert len(q) == 10
+    db.add(title="Aristocats",year=1970,score=7.1)
+    q = db.query()
+    assert len(q) == 11
+    assert q[-1] == (11, 'Aristocats', 1970, 7.1)
+
+def test_delete(db):
+    q = db.query()
+    assert len(q) == 10
+    idx = q[-1][0]
+    db.delete(idx)
+    q = db.query()
+    assert len(q) == 9
