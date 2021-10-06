@@ -25,8 +25,12 @@ def download_pickle_file():
 
 
 def deserialize(pkl_file: Path = PICKLE_INFILE) -> Sequence[NamedTuple]:
-    """Load the list of namedtuples from the pickle file passed in"""
 
+    """Load the list of namedtuples from the pickle file passed in"""
+    with open(pkl_file, "rb") as fp:
+        obj = pickle.load(fp)
+    return obj
+    
 
 def serialize(pkl_file: Path = PICKLE_OUTFILE,
               data: Sequence[NamedTuple] = None) -> None:
@@ -34,3 +38,5 @@ def serialize(pkl_file: Path = PICKLE_OUTFILE,
     if data is None:
         data = deserialize()
     # you code ...
+    with open(pkl_file, "wb") as fp:
+        pickle.dump(data, fp)
