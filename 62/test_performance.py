@@ -14,6 +14,7 @@ listofstrings = list(ascii_lowercase) * 1000
 def test_contains():
     t1, res1 = contains(alist, 500)
     t2, res2 = contains_fast(aset, 1000)
+    print(t1, t2)
     assert res1 == res2
     assert t1 > t2
 
