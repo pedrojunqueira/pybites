@@ -59,3 +59,9 @@ def test_len_hex_color(gen):
         assert g >= 0 and g < 256
         assert b >= 0 and b < 256
         assert (r + g + b) >= 0 and (r + g + b) < 766
+
+
+# def gen_hex_color():
+#     while True:
+#         r, g, b = sample(range(0, 256), 3)
+#         yield '#{:02x}{:02x}{:02x}'.format(r, g, b).upper()
