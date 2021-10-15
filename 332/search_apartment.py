@@ -3,7 +3,7 @@ from typing import List
 EAST = "E"
 WEST = "W"
 
-
+    
 def search_apartment(buildings: List[int], direction: str) -> List[int]:
     """
     Find and return the indices of those building with
@@ -11,6 +11,21 @@ def search_apartment(buildings: List[int], direction: str) -> List[int]:
 
     See sample inputs / outputs below and in the tests.
     """
+    max_hight = 0
+    can_see_direction = []
+    if direction == WEST:
+        for i, building in enumerate(buildings):
+            if building > max_hight:
+                can_see_direction.append(i)
+                max_hight = building
+    if direction == EAST:
+        for i, building in reversed(list(enumerate(buildings))):
+            if building > max_hight:
+                can_see_direction.append(i)
+                max_hight = building
+        can_see_direction = sorted(can_see_direction)
+    return can_see_direction
+        
 
 
 if __name__ == "__main__":
