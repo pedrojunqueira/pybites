@@ -1,11 +1,11 @@
 from itertools import combinations
 import random
 
-notes = ["5","10","20","50","100"]
+notes = ["5", "10", "20", "50", "100"]
 coins = ["5c", "10c", "20c", "50c", "1", "2"]
 
-note_combs = list(combinations(notes,2))
-coin_combs = list(combinations(coins,5))
+note_combs = list(combinations(notes, 2))
+coin_combs = list(combinations(coins, 5))
 
 
 possibilities = []

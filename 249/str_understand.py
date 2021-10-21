@@ -1,5 +1,4 @@
-
-table = 'movies'
+table = "movies"
 params = []
 sql = f"SELECT * FROM {table}"
 

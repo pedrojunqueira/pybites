@@ -11,7 +11,6 @@ def gen():
     return color.gen_hex_color()
 
 
-
 # def test_gen_hex_color(gen):
 #     with patch("color.sample") as mocksample:
 #         mocksample.side_effect = [[255, 255, 255],[1, 1, 1]]
@@ -19,7 +18,7 @@ def gen():
 #         assert c == "#FFFFFF"
 #         c = next(gen)
 #         assert c == "#010101"
-    
+
 
 # def test_len_hex_color(gen):
 #     sampling = []
@@ -39,11 +38,9 @@ def gen():
 #     sampling_set = set(sampling)
 #     for i in range(0,256):
 #         assert i in list(sampling_set)
-        
-@patch.object(color, "sample", side_effect=[
-    [191, 165, 216],
-    [101, 102, 103]
-])
+
+
+@patch.object(color, "sample", side_effect=[[191, 165, 216], [101, 102, 103]])
 def test_gen_hex_color(mock, gen):
     assert next(gen) == "#BFA5D8"
     assert next(gen) == "#656667"

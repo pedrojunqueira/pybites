@@ -6,10 +6,10 @@ from freezegun import freeze_time
 from tomorrow import tomorrow
 
 
-@freeze_time('2020-07-09')
+@freeze_time("2020-07-09")
 def test_no_args():
     print(tomorrow())
-    #assert tomorrow() == datetime.date(2020, 7, 10)
+    # assert tomorrow() == datetime.date(2020, 7, 10)
 
 
 def test_next_day():
@@ -30,4 +30,6 @@ def test_non_leap_year():
 
 def test_random_date():
     year, month, day = randint(2000, 2020), randint(1, 12), randint(1, 27)
-    assert tomorrow(datetime.date(year, month, day)) == datetime.date(year, month, day + 1)
+    assert tomorrow(datetime.date(year, month, day)) == datetime.date(
+        year, month, day + 1
+    )

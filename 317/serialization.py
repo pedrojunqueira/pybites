@@ -7,8 +7,8 @@ from urllib.request import urlretrieve
 
 TMP = Path(os.getenv("TMP", "/tmp"))
 S3 = "https://bites-data.s3.us-east-2.amazonaws.com"
-PICKLE_INFILE = TMP / 'input.pkl'
-PICKLE_OUTFILE = TMP / 'output.pkl'
+PICKLE_INFILE = TMP / "input.pkl"
+PICKLE_OUTFILE = TMP / "output.pkl"
 
 
 class MovieRented(NamedTuple):
@@ -19,9 +19,9 @@ class MovieRented(NamedTuple):
 
 def download_pickle_file():
     """download a pickle file we created with a
-       list of namedtuples
+    list of namedtuples
     """
-    urlretrieve(f'{S3}/bite317.pkl', PICKLE_INFILE)
+    urlretrieve(f"{S3}/bite317.pkl", PICKLE_INFILE)
 
 
 def deserialize(pkl_file: Path = PICKLE_INFILE) -> Sequence[NamedTuple]:
@@ -30,10 +30,11 @@ def deserialize(pkl_file: Path = PICKLE_INFILE) -> Sequence[NamedTuple]:
     with open(pkl_file, "rb") as fp:
         obj = pickle.load(fp)
     return obj
-    
 
-def serialize(pkl_file: Path = PICKLE_OUTFILE,
-              data: Sequence[NamedTuple] = None) -> None:
+
+def serialize(
+    pkl_file: Path = PICKLE_OUTFILE, data: Sequence[NamedTuple] = None
+) -> None:
     """Save the data passed in to the pickle file passed in"""
     if data is None:
         data = deserialize()

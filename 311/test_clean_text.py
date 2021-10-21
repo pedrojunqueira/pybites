@@ -3,13 +3,15 @@ import numpy as np
 from pandas._testing import assert_frame_equal
 import pytest
 
-from clean_text import (strip_url_email,
-                        to_lowercase,
-                        strip_stopwords,
-                        strip_non_ascii,
-                        strip_digits_punctuation,
-                        get_tdidf,
-                        TMP)
+from clean_text import (
+    strip_url_email,
+    to_lowercase,
+    strip_stopwords,
+    strip_non_ascii,
+    strip_digits_punctuation,
+    get_tdidf,
+    TMP,
+)
 
 df_samples = pd.read_pickle(TMP / "samples.pkl")
 

@@ -46,7 +46,7 @@ def test_kill_mutant_inside_range(gen):
         assert g >= 0 and g < 256
         assert b >= 0 and b < 256
         assert (r + g + b) >= 0 and (r + g + b) < 766
-    
+
 
 def test_len_hex_color(gen):
     for hexcolor in islice(gen, 1000):

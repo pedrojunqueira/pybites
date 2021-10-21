@@ -12,14 +12,14 @@ urllib.request.urlretrieve(
 
 def get_all_timestamps():
     """Read in the COURSE_TIMES and extract all MM:SS timestamps.
-       Here is a snippet of the input file:
+    Here is a snippet of the input file:
 
-       Start  What is Practical JavaScript? (3:47)
-       Start  The voice in your ear (4:41)
-       Start  Is this course right for you? (1:21)
-       ...
+    Start  What is Practical JavaScript? (3:47)
+    Start  The voice in your ear (4:41)
+    Start  Is this course right for you? (1:21)
+    ...
 
-        Return a list of MM:SS timestamps
+     Return a list of MM:SS timestamps
     """
     with open(COURSE_TIMES, "r") as fp:
         course_times_txt = fp.read()
@@ -31,7 +31,7 @@ def get_all_timestamps():
 
 def calc_total_course_duration(timestamps):
     """Takes timestamps list as returned by get_all_timestamps
-       and calculates the total duration as HH:MM:SS"""
+    and calculates the total duration as HH:MM:SS"""
     total_sec = 0
     for ts in timestamps:
         total_sec += int(ts.split(":")[0]) * 60 + int(ts.split(":")[1])

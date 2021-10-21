@@ -14,6 +14,7 @@ Keywords: enum, exception handling, multi type input
 from enum import Enum
 from itertools import permutations
 
+
 class Bloodtype(Enum):
     ZERO_NEG = 0
     ZERO_POS = 1
@@ -36,6 +37,7 @@ blood_type_text = {
     "AB+": Bloodtype.AB_POS,
 }
 
+
 def _obj_to_int(obj):
     if isinstance(obj, str):
         if obj not in blood_type_text.keys():
@@ -48,17 +50,19 @@ def _obj_to_int(obj):
     else:
         raise TypeError
 
+
 def _check_value(obj):
     if obj not in range(8):
         raise ValueError
 
+
 def check_bt(donor, recipient):
-    """ Checks red blood cell compatibility based on 8 blood types
-        Args:
-        donor (int | str | Bloodtype): red blood cell type of the donor
-        recipient (int | str | Bloodtype): red blood cell type of the recipient
-        Returns:
-        bool: True for compatability, False otherwise.
+    """Checks red blood cell compatibility based on 8 blood types
+    Args:
+    donor (int | str | Bloodtype): red blood cell type of the donor
+    recipient (int | str | Bloodtype): red blood cell type of the recipient
+    Returns:
+    bool: True for compatability, False otherwise.
     """
     donor = _obj_to_int(donor)
     recipient = _obj_to_int(recipient)
@@ -73,7 +77,7 @@ def _particular_antigen_comp(donor: int, recipient: int) -> tuple:
     """Returns a particular antigen compatibility, where each tuple member
     marks a compatibility for a particular antigen  (A, B, Rh-D).
     If tuple member is non-negative there is a compatibility.
-    For red blood cell compatibility is required that 
+    For red blood cell compatibility is required that
     all tuple members are non-negative (i.e. compatibility for all 3 antigens).
     0- bloodtype is represented as 0 ; AB+ is represented as 7; see Bloodtype enum
     Examples:
@@ -87,4 +91,3 @@ def _particular_antigen_comp(donor: int, recipient: int) -> tuple:
         ((recipient // 2) % 2) - ((donor // 2) % 2),
         (recipient % 2) - (donor % 2),
     )
-

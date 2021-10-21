@@ -75,7 +75,6 @@ def test_lt():
     assert acc2 < acc1
 
 
-
 @pytest.mark.parametrize("owners, amounts", [(["Pedro", "Elena"], [1000, 1000])])
 def test_add(capsys, owners, amounts):
     o1, o2 = owners

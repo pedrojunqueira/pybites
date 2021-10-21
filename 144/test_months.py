@@ -33,11 +33,11 @@ def test_one_year_one_month_and_ten_days_later():
 
 def test_non_int_input_args():
     with pytest.raises(TypeError):
-        calc_months_passed('a', 10, 1)
+        calc_months_passed("a", 10, 1)
     with pytest.raises(TypeError):
-        calc_months_passed(2018, 'b', 1)
+        calc_months_passed(2018, "b", 1)
     with pytest.raises(TypeError):
-        calc_months_passed(2018, 10, 'c')
+        calc_months_passed(2018, 10, "c")
 
 
 def test_out_of_dt_range_args():

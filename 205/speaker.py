@@ -41,7 +41,7 @@ def get_pycon_speaker_first_names(soup=None):
             speakers.extend(speaker.split(","))
         if "/" in speaker:
             speakers.extend(speaker.split("/"))
-    
+
     return [full_name.split()[0] for full_name in speakers]
 
 
@@ -56,4 +56,4 @@ def get_percentage_of_female_speakers(first_names):
         if "female" in g:
             females += 1
 
-    return round(females/ len(first_names) * 100,2)
+    return round(females / len(first_names) * 100, 2)

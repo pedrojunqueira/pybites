@@ -6,10 +6,8 @@ import pytest
 
 from movies import MovieDb
 
-salt = ''.join(
-    random.choice(string.ascii_lowercase) for i in range(20)
-)
-DB = os.path.join(os.getenv("TMP", "/tmp"), f'movies_{salt}.db')
+salt = "".join(random.choice(string.ascii_lowercase) for i in range(20))
+DB = os.path.join(os.getenv("TMP", "/tmp"), f"movies_{salt}.db")
 # https://www.imdb.com/list/ls055592025/
 DATA = [
     ("The Godfather", 1972, 9.2),
@@ -23,7 +21,7 @@ DATA = [
     ("One Flew Over the Cuckoo's Nest", 1975, 8.7),
     ("Lawrence of Arabia", 1962, 8.3),
 ]
-TABLE = 'movies'
+TABLE = "movies"
 
 
 @pytest.fixture
@@ -33,26 +31,32 @@ def db():
     yield Mdb
     Mdb.drop_table()
 
+
 def test_contructor(db):
-    assert db.table == 'movies'
+    assert db.table == "movies"
+
 
 def test_query_all(db):
     q = db.query()
     assert len(q) == 10
+
 
 def test_query_by_title_exact(db):
     q = db.query(title="The Godfather")
     assert len(q) == 1
     assert q[0][1] == "The Godfather"
 
+
 def test_query_by_title_anywhere(db):
     q = db.query(title="The")
     assert len(q) == 5
+
 
 def test_query_by_year(db):
     q = db.query(year=1975)
     assert len(q) == 1
     assert q[0][1] == "One Flew Over the Cuckoo's Nest"
+
 
 def test_query_score_gt(db):
     q = db.query(score_gt=1)
@@ -61,13 +65,15 @@ def test_query_score_gt(db):
     assert len(q) == 2
     assert " ".join([i[1] for i in q]) == "The Godfather The Shawshank Redemption"
 
+
 def test_add(db):
     q = db.query()
     assert len(q) == 10
-    db.add(title="Aristocats",year=1970,score=7.1)
+    db.add(title="Aristocats", year=1970, score=7.1)
     q = db.query()
     assert len(q) == 11
-    assert q[-1] == (11, 'Aristocats', 1970, 7.1)
+    assert q[-1] == (11, "Aristocats", 1970, 7.1)
+
 
 def test_delete(db):
     q = db.query()

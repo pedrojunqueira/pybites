@@ -121,9 +121,9 @@ def test_multiple_compatible(signs, combination, result):
     assert signs_are_mutually_compatible(signs, s1, s2) == result
     assert signs_are_mutually_compatible(signs, s2, s1) == result
 
+
 def test_multiple_compatible2(signs):
     assert signs_are_mutually_compatible(signs, "Aquarius", "Pisces") == False
-
 
 
 @pytest.mark.parametrize(

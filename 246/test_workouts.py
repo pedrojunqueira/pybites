@@ -12,7 +12,6 @@ from workouts import print_workout_days
         ("upper body #2", "thu\n"),
         ("lower body #2", "fri\n"),
         ("", "mon, tue, wed, thu, fri\n"),
-
     ],
 )
 def test_print_workout_days(capsys, workout, day):
@@ -20,14 +19,14 @@ def test_print_workout_days(capsys, workout, day):
     captured = capsys.readouterr()
     assert captured.out == day.title()
 
+
 @pytest.mark.parametrize(
     "workout, output",
     [
-        ("bla", "No matching workout\n"),   
+        ("bla", "No matching workout\n"),
     ],
 )
 def test_print_no_workout_days(capsys, workout, output):
     print_workout_days(workout)
     captured = capsys.readouterr()
     assert captured.out == output
-

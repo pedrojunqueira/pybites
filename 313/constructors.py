@@ -6,11 +6,10 @@ class DomainException(Exception):
 
 
 class Domain:
-
     def __init__(self, name):
         # validate a current domain (r'.*\.[a-z]{2,3}$' is fine)
         # if not valid, raise a DomainException
-        domain = re.match(r'.*\.[a-z]{2,3}$', name)
+        domain = re.match(r".*\.[a-z]{2,3}$", name)
         if not domain:
             raise DomainException
         self.name = name
@@ -22,13 +21,13 @@ class Domain:
 
     @classmethod
     def parse_url(cls, url):
-        domain = re.findall(r'(?:^https?:\/\/([^\/]+)(?:[\/,]|$)|^(.*)$)', url)
+        domain = re.findall(r"(?:^https?:\/\/([^\/]+)(?:[\/,]|$)|^(.*)$)", url)
         return cls(domain[0][0])
 
     def __str__(self) -> str:
         return f"{self.name}"
 
+
 d = Domain("www.google.com")
 
 print(type(d))
-

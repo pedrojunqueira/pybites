@@ -18,7 +18,7 @@ class Car:
     @staticmethod
     def age(days):
         """if / elif / else for exercise sake, if there would
-           be more conditions we would use a dict / mapping
+        be more conditions we would use a dict / mapping
         """
         if days == 7:  # *
             return "A week old"
@@ -29,7 +29,7 @@ class Car:
 
     @staticmethod
     def has_same_configuration(config1, config2):
-        if not isinstance(config1, list) or not isinstance(config2, list) :  # *
+        if not isinstance(config1, list) or not isinstance(config2, list):  # *
             raise TypeError()
         return config1 == config2  # *
 

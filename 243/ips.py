@@ -18,8 +18,10 @@ class ServiceIPRange:
     cidr: IPv4Network
 
     def __str__(self):
-        return (f"{self.cidr} is allocated to the {self.service} "
-                f"service in the {self.region} region")
+        return (
+            f"{self.cidr} is allocated to the {self.service} "
+            f"service in the {self.region} region"
+        )
 
 
 def parse_ipv4_service_ranges(source: Path) -> List[ServiceIPRange]:
@@ -43,8 +45,7 @@ def parse_ipv4_service_ranges(source: Path) -> List[ServiceIPRange]:
     return ipv4_service_ranges
 
 
-def get_aws_service_range(address: str,
-                          service_ranges: list) -> List[ServiceIPRange]:
+def get_aws_service_range(address: str, service_ranges: list) -> List[ServiceIPRange]:
     """
     Return a list of ServiceIPRange objects representing all AWS public
     IP ranges that contain `address`. Raise a ValueError if `address`
@@ -55,5 +56,4 @@ def get_aws_service_range(address: str,
     except AddressValueError:
         raise ValueError("Address must be a valid IPv4 address")
 
-    return [range_ for range_ in service_ranges
-            if ipv4_address in range_.cidr]
+    return [range_ for range_ in service_ranges if ipv4_address in range_.cidr]

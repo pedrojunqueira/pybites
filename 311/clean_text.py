@@ -14,10 +14,11 @@ S3 = "https://bites-data.s3.us-east-2.amazonaws.com"
 
 
 def _setup():
-    data_zipfile = '311-data.zip'
-    urlretrieve(f'{S3}/{data_zipfile}', TMP / data_zipfile)
+    data_zipfile = "311-data.zip"
+    urlretrieve(f"{S3}/{data_zipfile}", TMP / data_zipfile)
     ZipFile(TMP / data_zipfile).extractall(TMP)
     sys.path.append(TMP)
+
 
 _setup()
 
@@ -29,9 +30,9 @@ def load_data():
     # Load the text and populate a Pandas Dataframe
     # The order of the sample text strings should not be changed
     # Return the Dataframe with the index and 'text' column
-    with open(TMP/ "samples.txt", "r") as fp:
+    with open(TMP / "samples.txt", "r") as fp:
         text = fp.read()
-    #data = DefaultDict(list)
+    # data = DefaultDict(list)
     data = [line for line in text.splitlines()[1:]]
     columns = ["text"]
     # for line in text.splitlines():
@@ -45,11 +46,17 @@ def strip_url_email(x_df):
     # The 'text' column should be modified to remove
     #   all URls and Emails
     def strip_emails_and_uris(text):
-        return [word for word in text.split() if "http://" not in word.lower() and "@" not in word.lower() and "https://" not in word.lower()]
+        return [
+            word
+            for word in text.split()
+            if "http://" not in word.lower()
+            and "@" not in word.lower()
+            and "https://" not in word.lower()
+        ]
+
     x_df.text = x_df.text.apply(strip_emails_and_uris)
     x_df.text = x_df.text.str.join(" ")
     return x_df
-    
 
 
 def to_lowercase(x_df):
@@ -64,6 +71,7 @@ def strip_stopwords(x_df):
     # Return the Dataframe with the 'text' stripped of stop words
     def strip_stops(text):
         return [word for word in text.split() if word.lower() not in stop_words]
+
     x_df.text = x_df.text.apply(strip_stops)
     x_df.text = x_df.text.str.join(" ")
     return x_df
@@ -78,8 +86,9 @@ def strip_non_ascii(x_df):
         ascii_letters.append(" ")
         for char in text:
             if char.lower() not in ascii_letters:
-                text = text.replace(char,"")
+                text = text.replace(char, "")
         return text
+
     x_df.text = x_df.text.apply(remove_non_ascii)
     return x_df
 
@@ -92,8 +101,9 @@ def strip_digits_punctuation(x_df):
         ascii_digits_punctuation = [c for c in (string.digits + string.punctuation)]
         for char in text:
             if char.lower() in ascii_digits_punctuation:
-                text = text.replace(char,"")
+                text = text.replace(char, "")
         return text
+
     x_df.text = x_df.text.apply(remove_digits_punctuations)
     return x_df
 
@@ -130,9 +140,10 @@ def get_tdidf():
     )
     return df
 
+
 df_ = load_data()
 
-#print(df_)
+# print(df_)
 
 df = strip_url_email(df_)
 
@@ -150,10 +161,9 @@ tidf_ = calculate_tfidf(df)
 
 df = sort_columns(df)
 print(df)
-#print()
+# print()
 
 print(df.shape)
 
-#print(string.ascii_letters)
-#print(df)
-
+# print(string.ascii_letters)
+# print(df)

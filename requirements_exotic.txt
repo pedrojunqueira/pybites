@@ -1,7 +1,7 @@
 bs4
-gender-guesser
+gender - guesser
 pytest
-pytest-asyncio
+pytest - asyncio
 nltk
 # cryptography (use ansible Klayer)
 freezegun

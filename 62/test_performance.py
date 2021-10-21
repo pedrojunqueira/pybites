@@ -1,10 +1,17 @@
 from string import ascii_lowercase
 
-from performance import (contains, contains_fast,
-                         ordered_list_max, ordered_list_max_fast,
-                         list_concat, list_concat_fast,
-                         list_inserts, list_inserts_fast,
-                         list_creation, list_creation_fast)
+from performance import (
+    contains,
+    contains_fast,
+    ordered_list_max,
+    ordered_list_max_fast,
+    list_concat,
+    list_concat_fast,
+    list_inserts,
+    list_inserts_fast,
+    list_creation,
+    list_creation_fast,
+)
 
 alist = list(range(1000000))
 aset = set(alist)
