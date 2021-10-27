@@ -16,3 +16,6 @@ def convert(number: int, base: int = 2) -> str:
             break
     
     return   "".join([digit for digit in bases ][::-1])
+
+print(convert(10,16))
+
