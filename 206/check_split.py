@@ -39,7 +39,8 @@ def check_split(item_total, tax_rate, tip, people):
     for _ in range(people):
         each_share = round(split_total / people, 2)
         splits.append(each_share)
-    return (f"${split_total:.02f}", adjust_to_total(split_total, splits))
+    return (f"${split_total:.2f}", adjust_to_total(split_total, splits))
+
 
 
 testing_data = [
@@ -56,14 +57,19 @@ testing_data = [
     (("$16.99", "10%", "20%", 3), "$22.43"),
 ]
 
-for args, result in testing_data[:8]:
+for args, result in testing_data:
     grand_total, splits = check_split(*args)
-    # print(splits)
-    print(f"gt:{grand_total} re:{result} ttlsplits: ${sum(splits)} list:{splits}")
-    # assert grand_total == result
-    # assert grand_total == f"${sum(splits)}"
+    print(f"result: {grand_total} expected {result}")
+    print(f"sum {sum(splits)}")
 
-import math
+# for args, result in testing_data[:8]:
+#     grand_total, splits = check_split(*args)
+#     # print(splits)
+#     print(f"gt:{grand_total} re:{result} ttlsplits: ${sum(splits):.2f} list:{splits}")
+#     # assert grand_total == result
+#     # assert grand_total == f"${sum(splits)}"
 
-r = f"${sum([3.34, 3.33, 3.33])}"
-print(r)
+# import math
+
+# r = f"${sum([3.34, 3.33, 3.33])}"
+# print(r)

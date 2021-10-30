@@ -1,5 +1,5 @@
 {
-  "python.testing.pytestArgs": ["325"],
+  "python.testing.pytestArgs": ["206"],
   "python.testing.unittestEnabled": false,
   "python.testing.nosetestsEnabled": false,
   "python.testing.pytestEnabled": true
